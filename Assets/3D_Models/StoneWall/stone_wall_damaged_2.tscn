@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbnj5ng3kyfxj"]
+
+[ext_resource type="PackedScene" uid="uid://byk4aalxbngf3" path="res://Assets/3D_Models/StoneWall/stone-wall-damaged.glb" id="1_qf0ba"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6itth"]
+points = PackedVector3Array(-0.47175112, 0.018707534, -0.5, 0.48234817, 0.71930563, -0.38177806, 0.4850152, 0.721264, -0.41195497, 0.50793654, -0.007863522, -0.28571433, -0.50793654, 0.18264219, -0.28571433, 0.47175112, 0.018707534, -0.5, 0.142795, 0.690341, -0.5079148, 0.142795, 0.690341, -0.28571433, -0.4761159, 0.30962166, -0.49203712, -0.50793654, -0.007863522, -0.28571433, 0.50793654, 0.690341, -0.28571433, 0.4866394, 0.69195545, -0.48804456, -0.4761159, 0.30962166, -0.3174914, 0.142795, 0.7380952, -0.38098037, -0.50793654, 0.19848724, -0.5079148, 0.142795, 0.72210413, -0.46028176, 0.46115375, 0.66038656, -0.49768203, -0.50793654, 0.27785856, -0.49203712, 0.142795, 0.70625913, -0.30161375, 0.142795, 0.7380952, -0.4126705, 0.142795, 0.70625913, -0.49203712, 0.142795, 0.72210413, -0.3333691, 0.48644724, 0.70700103, -0.45759666)
+
+[node name="stone-wall-damaged2" instance=ExtResource("1_qf0ba")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stone-wall-damaged" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stone-wall-damaged/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_6itth")

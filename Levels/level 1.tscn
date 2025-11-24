@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://vpxeuq8abmy0"]
+
+[ext_resource type="Script" uid="uid://ckb63thrrw55u" path="res://Scripts/Player.gd" id="1_7cv3k"]
+[ext_resource type="Texture2D" uid="uid://fb44wus0ao2a" path="res://Assets/Textures/earth-texture/696.jpg" id="1_7moo8"]
+[ext_resource type="Script" uid="uid://fvlra0hxccqm" path="res://Scripts/level_1.gd" id="1_oalwn"]
+[ext_resource type="PackedScene" uid="uid://dhyqv0spc5nt" path="res://Levels/player.tscn" id="2_oalwn"]
+[ext_resource type="PackedScene" uid="uid://bjj5se5sd3hno" path="res://Assets/3D_Models/Crypt/Crypit.tscn" id="3_p48sa"]
+[ext_resource type="PackedScene" uid="uid://bgqd27hwmum28" path="res://Assets/3D_Models/Road/road_2.tscn" id="4_a63mx"]
+[ext_resource type="PackedScene" uid="uid://h2boqqpfgprl" path="res://Enemys/Zombie/zombie.tscn" id="5_540j4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x0rdp"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0t3ih"]
+sky_material = SubResource("ProceduralSkyMaterial_x0rdp")
+
+[sub_resource type="Environment" id="Environment_pe8na"]
+background_mode = 2
+sky = SubResource("Sky_0t3ih")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.5198877, 0.07239411, 0.16917631, 1)
+volumetric_fog_emission = Color(0.4045457, 0.15036497, 0.06296029, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a63mx"]
+albedo_color = Color(0.8826681, 0.35046503, 0.27873853, 1)
+emission_enabled = true
+emission = Color(0.8393803, 0.24932918, 0.19794926, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_oalwn"]
+vertices = PackedVector3Array(-49.5, 0.468, 8, -7.25, 0.468, 8.25, -7, 0.468, 6.5, -5, 0.468, 6.25, -5.25, 0.468, -49.5, -49.5, 0.468, -49.5, -3.5, 0.468, 6.25, -3.25, 0.468, -49.5, -1.5, 0.468, 6.75, -1.5, 0.468, 8.75, 49.5, 0.468, 8.75, -2, 0.468, 6.25, 49.5, 0.468, -49.5, -6, 4.218, 7.75, -6, 4.218, 13, -2.75, 4.218, 13, -2.75, 4.218, 7.75, -4.916668, 4.718, 7.75, -4.916668, 4.718, 13, -49.5, 0.468, 12.5, -7.25, 0.468, 12.25, -1.5, 0.468, 12, 49.5, 0.468, 12, -1.5, 0.468, 14, -3.25, 0.468, 14.25, -3, 0.468, 49.5, 49.5, 0.468, 49.5, -5.5, 0.468, 49.5, -5.25, 0.468, 14.25, -6.75, 0.468, 14.25, -7.25, 0.468, 13.75, -49.5, 0.468, 49.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 11, 10), PackedInt32Array(10, 11, 12), PackedInt32Array(12, 11, 7), PackedInt32Array(11, 6, 7), PackedInt32Array(13, 17, 14), PackedInt32Array(14, 17, 18), PackedInt32Array(18, 17, 16), PackedInt32Array(18, 16, 15), PackedInt32Array(20, 19, 1), PackedInt32Array(1, 19, 0), PackedInt32Array(9, 10, 21), PackedInt32Array(21, 10, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 22), PackedInt32Array(23, 21, 22), PackedInt32Array(29, 28, 27), PackedInt32Array(29, 27, 30), PackedInt32Array(30, 27, 31), PackedInt32Array(30, 31, 19), PackedInt32Array(19, 20, 30), PackedInt32Array(28, 24, 27), PackedInt32Array(27, 24, 25)]
+agent_max_slope = 65.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p48sa"]
+albedo_texture = ExtResource("1_7moo8")
+uv1_triplanar = true
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_oalwn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pe8na")
+
+[node name="Player" parent="." instance=ExtResource("2_oalwn")]
+script = ExtResource("1_7cv3k")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 288.95, 233.9, -242.35)
+material_override = SubResource("StandardMaterial3D_a63mx")
+cast_shadow = 0
+radius = 0.22071803
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_oalwn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+material_override = SubResource("StandardMaterial3D_p48sa")
+use_collision = true
+size = Vector3(100, 0.064, 100)
+
+[node name="road2" parent="NavigationRegion3D" instance=ExtResource("4_a63mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 14)
+
+[node name="road3" parent="NavigationRegion3D" instance=ExtResource("4_a63mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.193716, 0.042219162, 13.978042)
+
+[node name="road4" parent="NavigationRegion3D" instance=ExtResource("4_a63mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.856093, 0.099202394, 14.84387)
+
+[node name="road5" parent="NavigationRegion3D" instance=ExtResource("4_a63mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.109453, 0.16997123, 14.794611)
+
+[node name="StatickBody3D" parent="NavigationRegion3D" instance=ExtResource("3_p48sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3927546, 0.03200054, 10.345127)
+
+[node name="Zombie" parent="." instance=ExtResource("5_540j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.181475, -0.10750008, -3.293764)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 31.163002
+anchor_bottom = 16.29
+offset_left = -83.0
+offset_top = -39.0
+offset_right = -16.52002
+offset_bottom = 33.399963
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9490196, 0.003921569, 0.10980392, 0.5176471)
+
+[node name="Spawns" type="Node3D" parent="."]
+
+[node name="Spawn4" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.83442, 0, -38.571594)
+
+[node name="Spawn" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.625523, 0, 0)
+
+[node name="Spawn2" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.451538, 0, 7.0216675)
+
+[node name="Spawn3" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.742535, 0, 27.68892)
+
+[node name="ZombieSpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]

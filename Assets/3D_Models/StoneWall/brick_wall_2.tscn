@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bst8nuw6d1pa"]
+
+[ext_resource type="PackedScene" uid="uid://qg4a33pwpkqa" path="res://Assets/3D_Models/StoneWall/brick-wall.glb" id="1_an31b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26hrd"]
+albedo_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hi5wb"]
+points = PackedVector3Array(-0.48246798, 0.010789164, -0.5, 0.48593062, 0.7219351, -0.33406255, 0.4829469, 0.7045397, -0.24360646, -0.4858622, 0.7219351, -0.33406255, -0.47758693, 0.014373579, -0.19999999, 0.4825364, 0.010789164, -0.5, 0.4825364, 0.6740765, -0.5, 0.47765535, 0.014373579, -0.19999999, -0.47758693, 0.670951, -0.19999999, -0.48246798, 0.6740765, -0.5, 0.47765535, 0.670951, -0.19999999, 0.48874396, 0.693368, -0.486632, -0.4870123, 0.69225085, -0.21225084, -0.48328748, 0.70482713, -0.45489872, 0.48708072, 0.69225085, -0.21225084, -0.48867553, 0.693368, -0.486632, 0.48634222, 0.72223735, -0.36436564, -0.48287848, 0.7045397, -0.24360646, -0.4862738, 0.72223735, -0.36436564, 0.4833559, 0.70482713, -0.45489872)
+
+[node name="brick-wall2" instance=ExtResource("1_an31b")]
+
+[node name="brick-wall" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_26hrd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="brick-wall" index="0"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="brick-wall/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_hi5wb")
