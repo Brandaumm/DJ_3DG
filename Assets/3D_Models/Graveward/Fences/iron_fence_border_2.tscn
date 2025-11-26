@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhujndvshphru"]
+
+[ext_resource type="PackedScene" uid="uid://1pyldja3e58l" path="res://Assets/3D_Models/Graveward/Fences/iron-fence-border.glb" id="1_5jcum"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mhyb"]
+size = Vector3(1.0003662, 0.88708496, 0.12145996)
+
+[node name="iron-fence-border2" instance=ExtResource("1_5jcum")]
+
+[node name="iron-fence-border" parent="." index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="iron-fence-border" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="iron-fence-border/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00018310547, 0.4418335, -0.3256266)
+shape = SubResource("BoxShape3D_5mhyb")

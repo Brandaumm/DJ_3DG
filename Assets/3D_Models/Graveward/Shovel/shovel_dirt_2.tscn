@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwj126hdfftk5"]
+
+[ext_resource type="PackedScene" uid="uid://28b05rsfqom1" path="res://Assets/3D_Models/Graveward/Shovel/shovel-dirt.glb" id="1_7kx8m"]
+
+[node name="shovel-dirt2" instance=ExtResource("1_7kx8m")]
+
+[node name="shovel-dirt" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
