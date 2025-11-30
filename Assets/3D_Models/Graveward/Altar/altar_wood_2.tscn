@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0edugigq7lkc"]
+[gd_scene load_steps=4 format=3 uid="uid://b0edugigq7lkc"]
 
 [ext_resource type="PackedScene" uid="uid://bww13wim6j230" path="res://Assets/3D_Models/Graveward/Altar/altar-wood.glb" id="1_r4xpd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aih2v"]
+albedo_color = Color(0.16862746, 0.29803923, 0.36862746, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iyaab"]
 points = PackedVector3Array(0.514168, 0.10786943, 0.32574317, -0.4770138, 0.003030083, -0.32362482, -0.5126247, 0.0010525256, -0.2939977, -0.51992184, 0.5335039, -0.28197816, 0.46928912, 0.53241193, -0.3294, -0.46260828, 0.5286354, 0.3294, -0.49739358, 0.0006124593, 0.31521958, 0.51263314, 0.0010707916, -0.29397723, 0.51690406, 0.53192514, 0.28499594, 0.49742, 0.0006216831, 0.3152087, -0.4692453, 0.53241193, -0.3294, 0.49754247, 0.10786943, -0.33769366, -0.5168885, 0.5319398, 0.28501144, 0.51993734, 0.5334893, -0.28196263, 0.4626521, 0.5286354, 0.3294, -0.5307498, 0.10786943, -0.30447522, -0.5141243, 0.10786943, 0.32574317, 0.53079367, 0.10786943, -0.30447522, -0.49760258, 0.10786943, -0.33769366, 0.45869136, 0.0044119298, 0.3266, 0.5147097, 0, 0.283796, 0.476979, 0.003018529, -0.32363915, -0.51466584, 0, 0.283796, -0.45864755, 0.0044119298, 0.3266)
@@ -9,6 +12,7 @@ points = PackedVector3Array(0.514168, 0.10786943, 0.32574317, -0.4770138, 0.0030
 
 [node name="altar-wood" parent="." index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_aih2v")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="altar-wood" index="0"]
 

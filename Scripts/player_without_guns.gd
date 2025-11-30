@@ -88,6 +88,10 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ /2) * BOB_AMP
 	return pos
 	
-func hit(dir):
-	emit_signal("player_hit")
-	velocity += dir * HIT_STAGGER
+func hit():
+	get_tree().reload_current_scene()
+
+
+func _on_next_level_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		get_tree().change_scene_to_file("res://Levels/level_2.tscn")

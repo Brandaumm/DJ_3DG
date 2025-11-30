@@ -26,4 +26,5 @@ shape = SubResource("ConvexPolygonShape3D_tbpbd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9231855, 0)
 
 [node name="Rifle" parent="Head/Camera3D" instance=ExtResource("2_cko2x")]
+process_priority = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21467167, -0.32023716, -0.6523863)
