@@ -20,6 +20,7 @@ var base_cam_pos := Vector3.ZERO
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var footstep_player: AudioStreamPlayer3D = $footsteps
 
 signal player_hit
 
@@ -35,6 +36,20 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x , deg_to_rad(-90), deg_to_rad(90))
 		
 func _physics_process(delta: float) -> void:	
+	
+	if velocity.length() > 0.1 and is_on_floor():
+		if Input.is_action_pressed("sprint"):
+			speed = SPRINTING_SPEED
+			footstep_player.pitch_scale = 1.4  
+		else:
+			speed = WALK_SPEED
+			footstep_player.pitch_scale = 1.0  
+
+		if !footstep_player.playing:
+			footstep_player.play()
+	else:
+		if footstep_player.playing:
+			footstep_player.stop()
 	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
@@ -90,8 +105,3 @@ func _headbob(time) -> Vector3:
 	
 func hit():
 	get_tree().reload_current_scene()
-
-
-func _on_next_level_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		get_tree().change_scene_to_file("res://Levels/level_2.tscn")

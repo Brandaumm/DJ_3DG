@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2025v2uovcid"]
+
+[ext_resource type="Script" uid="uid://bqa6nmkigfhak" path="res://Puzzle_Manager.gd" id="1_adeer"]
+[ext_resource type="PackedScene" uid="uid://booau4b8jrje0" path="res://lever.tscn" id="2_wh1nj"]
+[ext_resource type="PackedScene" uid="uid://m0y1s1gk80oj" path="res://elevator.tscn" id="3_wh1nj"]
+[ext_resource type="MeshLibrary" uid="uid://bqwjug1m1kvvf" path="res://Assets/3D_Models/Town/TownMeshLibrary.tres" id="4_oyq1p"]
+
+[node name="PuzzleManager" type="Node3D"]
+script = ExtResource("1_adeer")
+
+[node name="Lever" parent="." instance=ExtResource("2_wh1nj")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5.4194036, 1.5, 0.49716675)
+
+[node name="Lever2" parent="." instance=ExtResource("2_wh1nj")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5.4194036, 1.5, -0.50283325)
+
+[node name="Lever3" parent="." instance=ExtResource("2_wh1nj")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5.4194036, 1.5, 2.4971669)
+
+[node name="Lever4" parent="." instance=ExtResource("2_wh1nj")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5.4194036, 1.5, -1.5028332)
+
+[node name="Lever5" parent="." instance=ExtResource("2_wh1nj")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 5.4194036, 1.5, 1.4971668)
+
+[node name="Elevator" parent="." instance=ExtResource("3_wh1nj")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 2.6020422, 0, 0.51032054)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("4_oyq1p")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(5, 65534, 68, 5, 65535, 68, 5, 0, 68, 5, 1, 68, 5, 2, 68, 65541, 65534, 68, 65541, 65535, 68, 65541, 0, 68, 65541, 1, 68, 65541, 2, 68, -65531, 2, 68, -65531, 1, 68, -65531, 0, 68, -65531, 65535, 68, -65531, 65534, 68)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)

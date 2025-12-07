@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://bohbgbl713p2n"]
+
+[ext_resource type="Texture2D" uid="uid://c6fea3dlc33wm" path="res://imagens-esteticas-de-jesus-obydv9rxpqmyz9a6.jpg" id="1_lt2ag"]
+[ext_resource type="FontFile" uid="uid://b86u2h8agux6i" path="res://GrinchedRegular.otf" id="2_75yvt"]
+[ext_resource type="AudioStream" uid="uid://c5bokk4u2ipfg" path="res://Sounds/geometry-dash-menu-theme_xkGGC9M.mp3" id="3_jclhh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3e5g"]
+texture = ExtResource("1_lt2ag")
+modulate_color = Color(0.55815613, 0.55815613, 0.55815613, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6pt3"]
+bg_color = Color(1, 0, 0.047058824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_beduj"]
+bg_color = Color(0.43429556, 0.0022621031, 0.029346883, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wabui"]
+bg_color = Color(0.73232555, 0.16749397, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ea6qb"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m3e5g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -90.5
+offset_right = 173.5
+offset_bottom = 90.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_75yvt")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_u6pt3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_beduj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wabui")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ea6qb")
+text = "Exit."
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.0
+offset_top = -239.0
+offset_right = 216.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_75yvt")
+theme_override_font_sizes/font_size = 71
+text = "Project Castle Z"
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = 62.0
+offset_right = 468.0
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_75yvt")
+theme_override_font_sizes/font_size = 46
+text = "Apos tanto sofrimento, Valdemar da bocha finalmente encontrou paz com  Jesus"
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_jclhh")
+autoplay = true

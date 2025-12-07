@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhyqv0spc5nt"]
+[gd_scene load_steps=9 format=3 uid="uid://dhyqv0spc5nt"]
 
 [ext_resource type="Script" uid="uid://w4hg6e8b0lmg" path="res://Scripts/player_without_guns.gd" id="1_cko2x"]
 [ext_resource type="PackedScene" uid="uid://b7y78mdrmh034" path="res://Assets/3D_Models/Gun/gun.tscn" id="2_cko2x"]
+[ext_resource type="AudioStream" uid="uid://blb80w4pcolcr" path="res://Sounds/concrete-footsteps-6752.mp3" id="3_gwlcl"]
+[ext_resource type="AudioStream" uid="uid://dlpfv0iyfblhr" path="res://Sounds/gunshot-352466.mp3" id="4_5rgs0"]
+[ext_resource type="AudioStream" uid="uid://c4ptmk41120x8" path="res://Sounds/horror-flesh-hit.mp3" id="5_g0nkr"]
+[ext_resource type="AudioStream" uid="uid://tadbp6yr02r6" path="res://Sounds/sharp-punch-soundbible.mp3" id="6_xeq3v"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2ow8g"]
 
@@ -28,3 +32,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9231855, 0)
 [node name="Rifle" parent="Head/Camera3D" instance=ExtResource("2_cko2x")]
 process_priority = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21467167, -0.32023716, -0.6523863)
+
+[node name="footstep_player" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_gwlcl")
+volume_db = -16.516
+
+[node name="gunshot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_5rgs0")
+volume_db = -16.799
+pitch_scale = 2.72
+
+[node name="hit_flesh" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_g0nkr")
+
+[node name="hitsound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_xeq3v")

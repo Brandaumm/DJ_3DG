@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqkwdykjf0n4o"
+path="res://.godot/imported/01. Stardew Valley Overture.mp3-0fd85c7814f8014f7928a91960d74df1.mp3str"
+
+[deps]
+
+source_file="res://Sounds/01. Stardew Valley Overture.mp3"
+dest_files=["res://.godot/imported/01. Stardew Valley Overture.mp3-0fd85c7814f8014f7928a91960d74df1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

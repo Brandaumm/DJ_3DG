@@ -11,6 +11,10 @@ var attack_cooldown = 0.2
 var can_move = false  
 var health = 6
 
+@export var spawn_sounds: Array[AudioStream]
+@onready var audio_player: AudioStreamPlayer3D = $audio_player
+@onready var dying: AudioStreamPlayer3D = $die
+
 @export var player_paths := [
 	"/root/World/Player",
 	"/root/World/PlayerWithoutGuns"
@@ -24,7 +28,8 @@ func _ready():
 	state_machine = anim_tree.get('parameters/playback')
 	_start_spawn_delay()
 	add_to_group("enemy")
-
+	play_random_spawn_sound()
+	
 func _find_player():
 	for p in player_paths:
 		if get_tree().get_root().has_node(p):
@@ -36,7 +41,7 @@ func _find_player():
 
 func _start_spawn_delay():
 	can_move = false
-	await get_tree().create_timer(6.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	can_move = true
 
 func _process(delta):
@@ -99,6 +104,7 @@ func apply_damage(amount: int):
 		
 		
 func die():
+	dying.play()
 	can_move = false
 	can_attack = false
 
@@ -107,3 +113,10 @@ func die():
 	await get_tree().create_timer(2.2).timeout
 
 	queue_free()
+	
+func play_random_spawn_sound():
+	if spawn_sounds.is_empty():
+		return
+	var random_sound = spawn_sounds[randi() % spawn_sounds.size()]
+	audio_player.stream = random_sound
+	audio_player.play()

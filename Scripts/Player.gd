@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const WALK_SPEED = 5.0
 const SPRINTING_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
@@ -12,6 +11,7 @@ const HIT_STAGGER = 20
 const BOB_FREQ = 3.0
 const BOB_AMP = 0.08
 
+var health := 3
 var speed
 var t_bob = 0.0
 var base_cam_pos := Vector3.ZERO
@@ -25,10 +25,11 @@ var instance
 @onready var camera = $Head/Camera3D
 @onready var gun_anim = $Head/Camera3D/Rifle/AnimationPlayer
 @onready var gun_barrel = $Head/Camera3D/Rifle/RayCast3D
-
+@onready var footstep_player: AudioStreamPlayer3D = $footstep_player
+@onready var gunshot: AudioStreamPlayer3D = $gunshot
+@onready var hitsound: AudioStreamPlayer3D = $hitsound
 
 signal player_hit
-
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -40,7 +41,21 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x , deg_to_rad(-90), deg_to_rad(90))
 		
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
+	
+	if velocity.length() > 0.1 and is_on_floor():
+		if Input.is_action_pressed("sprint"):
+			speed = SPRINTING_SPEED
+			footstep_player.pitch_scale = 1.4  
+		else:
+			speed = WALK_SPEED
+			footstep_player.pitch_scale = 1.0  
+
+		if !footstep_player.playing:
+			footstep_player.play()
+	else:
+		if footstep_player.playing:
+			footstep_player.stop()	
 	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
@@ -53,24 +68,19 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction: Vector3 = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if is_on_floor():
-	
 		if direction:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-	
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.0)
@@ -87,14 +97,15 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, target_fov, delta * 0.0)
 	
 	if Input.is_action_pressed("shoot"):
+				
 		if !gun_anim.is_playing():
 			gun_anim.play("shoot")
 			instance = bullet.instantiate()
+			gunshot.play()
 			instance.position = gun_barrel.global_position
 			instance.transform.basis = gun_barrel.global_transform.basis
 			get_parent().add_child(instance)
 			
-	
 	move_and_slide()
 	
 func _headbob(time) -> Vector3:
@@ -107,3 +118,13 @@ func hit(dir):
 	print("hit")
 	emit_signal("player_hit")
 	velocity += dir * HIT_STAGGER
+	hitsound.play()
+	health -= 1
+	print("HP:", health)
+
+	if health <= 0:
+		_die()
+
+func _die():
+	print("PLAYER MORREU — Recarregando level...")
+	get_tree().reload_current_scene()
