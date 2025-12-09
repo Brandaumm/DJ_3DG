@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bohbgbl713p2n"]
+[gd_scene load_steps=10 format=3 uid="uid://bohbgbl713p2n"]
 
+[ext_resource type="Script" uid="uid://iryqab58ge6k" path="res://end.gd" id="1_75yvt"]
 [ext_resource type="Texture2D" uid="uid://c6fea3dlc33wm" path="res://imagens-esteticas-de-jesus-obydv9rxpqmyz9a6.jpg" id="1_lt2ag"]
 [ext_resource type="FontFile" uid="uid://b86u2h8agux6i" path="res://GrinchedRegular.otf" id="2_75yvt"]
-[ext_resource type="AudioStream" uid="uid://c5bokk4u2ipfg" path="res://Sounds/geometry-dash-menu-theme_xkGGC9M.mp3" id="3_jclhh"]
+[ext_resource type="AudioStream" uid="uid://djfk8ny5otilf" path="res://Sounds/angelical-pad-143276.mp3" id="4_75yvt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3e5g"]
 texture = ExtResource("1_lt2ag")
@@ -44,6 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_75yvt")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -116,6 +118,8 @@ theme_override_font_sizes/font_size = 46
 text = "Apos tanto sofrimento, Valdemar da bocha finalmente encontrou paz com  Jesus"
 autowrap_mode = 2
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_jclhh")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_75yvt")
 autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
